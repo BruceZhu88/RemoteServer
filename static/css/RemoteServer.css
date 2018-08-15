@@ -1,0 +1,15 @@
+
+
+#txt_content {
+    width: 100%;
+    outline: 0;
+    height: 296px;
+    resize: none;
+    font-size: 16px;
+    color: black;
+}
+
+#btn_send {
+    background: black;
+    color: white;
+}

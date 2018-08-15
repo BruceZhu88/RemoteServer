@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<page>
+	<adb name="shell">
+		<cmd id="screencap">adb shell screencap -p /sdcard/{}</cmd>
+	</adb>
+	<adb name="system">
+		<cmd id="file_pull">adb pull /sdcard/{} ./data/download/{}</cmd>
+	</adb>
+
+</page>

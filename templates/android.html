@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Android{% endblock %}
+
+{% block page_content %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/android.css')}}">
+<div>
+	<button id="screencap" class="android_btn">Screencap</button>
+	<button></button>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="static/js/android.js"></script>
+{% endblock %}
