@@ -8,6 +8,7 @@ import app_config
 import simplejson
 import traceback
 import PIL
+import re
 from flask import Flask, render_template, request, redirect, jsonify, url_for, send_from_directory
 from flask_bootstrap import Bootstrap
 from flask_socketio import SocketIO
@@ -31,7 +32,7 @@ socketio = SocketIO(app, async_mode=async_mode)
 # socketio.async_mode
 ALLOWED_EXTENSIONS = set(['txt', 'ini', 'gif', 'png', 'jpg', 'jpeg',
                           'bmp', 'rar', 'zip', '7zip', 'doc', 'docx',
-                          'pdf', 'ppt'])
+                          'pdf', 'ppt', 'xls', 'xlsx'])
 IGNORED_FILES = set(['.gitignore'])
 
 PAGE_INFO = {"page": ""}
@@ -66,8 +67,20 @@ def remote_server():
 @app.route('/remote_server/send_content', methods=['POST'])
 def send_content():
     txt = request.form.to_dict().get("txt")
-    print(format(str(datetime.today()), '*^60s'))
-    print(txt)
+    # print(format(str(datetime.today()), '*^60s'))
+    tmp_file = './data/tmp.txt'
+    match_str = re.match(r'file:.*\n', txt)
+    if match_str:
+        file_str = match_str.group()
+        file_path = re.findall(r'file:(.*)\n', file_str)[0]
+        if os.path.exists(os.path.split(file_path)[0]):
+            txt = txt.replace(file_str, '')
+            with open(file_path, 'w') as f:
+                f.write(txt)
+            txt = 'Write text into file {}'.format(file_path)
+    with open(tmp_file, 'a') as tf:
+        tf.write('\n' + format(str(datetime.today()), '*^60s') + '\n' + txt)
+    # print(txt)
     return jsonify({})
 
 # *********************************************************************************

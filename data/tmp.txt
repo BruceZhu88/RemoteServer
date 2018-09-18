@@ -1,0 +1,50 @@
+
+*****************2018-08-17 15:33:48.327062*****************
+hello
+*****************2018-08-17 15:34:15.932089*****************
+Write text into file ./data/download/test3.py
+*****************2018-08-17 15:36:13.599554*****************
+import pymysql
+
+
+def get_connection():
+    host = '10.118.137.131'
+    port = 3306
+    user = 'root'
+    pswd = 'root'
+    dbname = 'test_platform'
+    conn = pymysql.connect(
+        host=host,
+        port=port,
+        user=user,
+        passwd=pswd,
+        db=dbname,
+        charset='utf8'
+    )
+    return conn
+
+
+if __name__ == '__main__':
+    conn = get_connection()
+    sql = "SELECT * from app_automation_android_suites"
+    with conn.cursor() as cursor:
+        cursor.execute(sql)
+        print(cursor.description)
+        for suite_name in cursor:
+            print(suite_name)
+        cursor.close()
+
+*****************2018-08-17 15:36:39.079403*****************
+Write text into file ./data/download/test.py
+*****************2018-08-24 14:01:40.477302*****************
+Write text into file ./data/test.py
+*****************2018-08-29 09:17:36.520410*****************
+
+*****************2018-08-29 19:33:26.076396*****************
+https://stackoverflow.com/questions/32899/how-do-you-generate-dynamic-parametrized-unit-tests-in-python
+*****************2018-09-10 18:54:46.653569*****************
+市委stg2环境，小红点数字目前只能模拟出小红点，但阅读该文件后的小红点数的变化，目前仍无法测试和验证，测试不完整，@琚磊；
+*****************2018-09-10 18:55:50.591731*****************
+修改好的BUG目前只合并到dev分支，但新功能测试是在test分支里验证；
+*****************2018-09-10 19:00:57.107150*****************
+市委stg2环境，小红点数字目前只能模拟出小红点，但阅读该文件后的小红点数的变化，目前仍无法测试和验证，测试不完整，@琚磊；
